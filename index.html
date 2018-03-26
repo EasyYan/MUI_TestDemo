@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript">
+			mui('.mui-switch').each(function() {
+				mui.alert("event.detail.isActive");
+				var _this = this;
+				mui(_this).switch();
+				_this.addEventListener("toggle", function(event) {
+					if(event.detail.isActive) {
+						event.detail.isActive = 0;
+					} else {
+						event.detail.isActive = 1;
+					}
+					mui.alert(event.detail.isActive);
+				});
+			});
+			mui.init();
+
+			function btnFunction(obj) {
+				switch(obj.id) {
+					case 'alertBtn':
+						mui.alert('It is alert dialog')
+						break;
+					case 'confirmBtn':
+						mui.confirm('It is my first try for MUI', 'Hello MUI', ['Yes', 'No'], function(e) {
+							e.index == 0 ? mui.toast('Keep learning!') : mui.toast('Good job!')
+						})
+						break;
+					case 'promptBtn':
+						mui.prompt('Just say something', 'Hello World!', 'Hello MUI', '', function(e) {
+							e.index == 1 && e.value != '' && mui.toast(e.value)
+						})
+						break;
+					case 'toastBtn':
+						mui.toast('Hello MUI')
+						break;
+					default:
+						break;
+				}
+			};
+		</script>
+	</head>
+
+	<body>
+		<div class="mui-off-canvas-wrap mui-draggable mui-slide-in">
+		  <aside class="mui-off-canvas-left" id="offCanvasSide">
+		    <div class="mui-scroll-wrapper">
+		      <div class="mui-scroll">
+		        
+		      </div>
+		    </div>
+		  </aside>
+		  <div class="mui-inner-wrap">
+		    <header class="mui-bar mui-bar-nav">
+		      <a class="mui-icon mui-action-menu mui-icon-bars mui-pull-left" href="#offCanvasSide"></a>
+		      <h1 class="mui-title">Taylor Test</h1>
+		    </header>
+		    <nav class="mui-bar mui-bar-tab">
+			    <a class="mui-tab-item mui-active">
+			        <span class="mui-icon mui-icon-home"></span>
+			        <span class="mui-tab-label">Main</span>
+			    </a>
+			    <a class="mui-tab-item">
+			        <span class="mui-icon mui-icon-phone"></span>
+			        <span class="mui-tab-label">Phone</span>
+			    </a>
+			    <a class="mui-tab-item">
+			        <span class="mui-icon mui-icon-email"></span>
+			        <span class="mui-tab-label">Email</span>
+			    </a>
+			    <a class="mui-tab-item">
+			        <span class="mui-icon mui-icon-gear"></span>
+			        <span class="mui-tab-label">Setting</span>
+			    </a>
+			</nav>
+		    <div class="mui-content mui-scroll-wrapper">
+		      <div class="mui-scroll">
+		        <ul class="mui-table-view">
+			<li class="mui-table-view-cell mui-collapse">
+				<a class="mui-navigate-right" href="#">TEST -- Button<span class="mui-badge mui-badge-primary">1</span></a>
+				<div class="mui-collapse-content">
+					<button type="button" class="mui-btn mui-btn-primary">Blue</button>
+					<button type="button" class="mui-btn mui-btn-success">Green</button>
+					<button type="button" class="mui-btn mui-btn-warning">Yellow</button>
+					<button type="button" class="mui-btn mui-btn-danger">Red</button>
+					<button type="button" class="mui-btn mui-btn-royal">Purple</button>
+				</div>
+			</li>
+			<li class="mui-table-view-cell mui-collapse">
+				<a class="mui-navigate-right" href="#">TEST -- Slider<span class="mui-badge mui-badge-success">22</span></a>
+				<div class="mui-collapse-content">
+					<div class="mui-slider">
+						<div class="mui-slider-group">
+							<div class="mui-slider-item">
+								<a href="#"><img src="pic/1.jpg" /></a>
+							</div>
+							<div class="mui-slider-item">
+								<a href="#"><img src="pic/2.jpg" /></a>
+							</div>
+							<div class="mui-slider-item">
+								<a href="#"><img src="pic/3.jpg" /></a>
+							</div>
+							<div class="mui-slider-item">
+								<a href="#"><img src="pic/4.jpg" /></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="mui-table-view-cell mui-collapse">
+				<a class="mui-navigate-right" href="#">TEST -- Checkbox</a>
+				<div class="mui-collapse-content">
+					<div class="mui-input-row mui-checkbox mui-left">
+						<label>Monday</label>
+						<input name="checkbox1" value="Item 1" type="checkbox" checked>
+					</div>
+					<div class="mui-input-row mui-checkbox">
+						<label>Tuesday</label>
+						<input name="checkbox2" value="Item 2" type="checkbox">
+					</div>
+				</div>
+			</li>
+			<li class="mui-table-view-cell mui-collapse">
+				<a class="mui-navigate-right" href="#">TEST -- Dialog</a>
+				<div class="mui-collapse-content">
+					<table class="table table-bordered table-striped">
+						<tbody id="dialogDemo">
+							<button type="button" class="mui-btn mui-btn-blue mui-btn-outlined" id="alertBtn" onclick="btnFunction(this)" style="margin: 5px;">alert</button>
+							<button type="button" class="mui-btn mui-btn-success mui-btn-outlined" id="confirmBtn" onclick="btnFunction(this)" style="margin: 5px;">confirm</button>
+							<button type="button" class="mui-btn mui-btn-warning mui-btn-outlined" id="promptBtn" onclick="btnFunction(this)" style="margin: 5px;">prompt</button>
+							<button type="button" class="mui-btn mui-btn-danger mui-btn-outlined" id="toastBtn" onclick="btnFunction(this)" style="margin: 5px;">toast</button>
+						</tbody>
+					</table>
+				</div>
+			</li>
+			<li class="mui-table-view-cell mui-collapse">
+				<a class="mui-navigate-right" href="#">TEST -- Form</a>
+				<div class="mui-collapse-content">
+					<form class="mui-input-group">
+						<div class="mui-input-row">
+							<label>NAME</label>
+							<input type="text" class="mui-input-clear" placeholder="Plz input the name">
+						</div>
+						<div class="mui-input-row">
+							<label>PWD</label>
+							<input type="password" class="mui-input-password" placeholder="Plz input the password">
+						</div>
+						<div class="mui-button-row">
+							<button type="button" class="mui-btn mui-btn-primary">Confirm</button>
+							<button type="button" class="mui-btn mui-btn-danger">Cancel</button>
+						</div>
+					</form>
+				</div>
+			</li>
+			<li class="mui-table-view-cell mui-collapse">
+				<a class="mui-navigate-right" href="#">TEST -- List</a>
+				<div class="mui-collapse-content">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell">Item 1</li>
+						<li class="mui-table-view-cell">Item 2</li>
+						<li class="mui-table-view-cell">Item 3</li>
+					</ul>
+				</div>
+			</li>
+			<li class="mui-table-view-cell mui-collapse">
+				<a class="mui-navigate-right" href="#">TEST -- Range</a>
+				<div class="mui-collapse-content">
+					<div class="mui-input-row mui-input-range">
+						<label>Range</label>
+						<input type="range" min="0" max="100">
+					</div>
+				</div>
+			</li>
+			<li class="mui-table-view-cell mui-collapse">
+				<a class="mui-navigate-right" href="#">TEST -- Switch</a>
+				<div class="mui-collapse-content">
+					<div class="mui-switch" id="mySwitch">
+						<div class="mui-switch-handle"></div>
+					</div>
+				</div>
+			</li>
+			<li class="mui-table-view-cell mui-collapse">
+				<a class="mui-navigate-right" href="#">TEST -- NumberBox</a>
+				<div class="mui-collapse-content">
+					<div class="mui-numbox">
+						<button class="mui-btn mui-numbox-btn-minus" type="button">-</button>
+						<input class="mui-numbox-input" type="number" />
+						<button class="mui-btn mui-numbox-btn-plus" type="button">+</button>
+					</div>
+				</div>
+			</li>
+		</ul>
+		        
+		      </div>
+		    </div>  
+		    <div class="mui-off-canvas-backdrop"></div>
+		  </div>
+		</div>
+		
+
+	</body>
+
+</html>
